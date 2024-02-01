@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class UserModel(models.Model):
-    userid=models.AutoField(primary_key=True)
+    id=models.AutoField(primary_key=True)
     name=models.CharField(max_length=50)
     email=models.EmailField(max_length=254,unique=True)
     membership_date=models.DateField(auto_now=False, auto_now_add=False)
@@ -11,7 +11,7 @@ class UserModel(models.Model):
         return str(self.id)
 
 class BookModel(models.Model):
-    bookid=models.AutoField(primary_key=True)
+    id=models.AutoField(primary_key=True)
     title=models.CharField( max_length=50)
     isbn=models.CharField(unique=True,max_length=50)
     published_date=models.DateField(auto_now=False, auto_now_add=False)
@@ -22,7 +22,7 @@ class BookModel(models.Model):
         return str(self.id)
     
 class BookDetailsModel(models.Model):
-    details_id=models.AutoField(primary_key=True)
+    id=models.AutoField(primary_key=True)
     number_of_pages=models.IntegerField()
     publisher=models.CharField(max_length=50)
     language=models.CharField(max_length=50)
