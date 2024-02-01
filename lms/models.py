@@ -22,11 +22,11 @@ class BookModel(models.Model):
         return str(self.id)
     
 class BookDetailsModel(models.Model):
-    detailsid=models.AutoField(primary_key=True)
-    bookid=models.ForeignKey("BookModel", verbose_name=("Book Id"), on_delete=models.CASCADE)    
+    details_id=models.AutoField(primary_key=True)
     number_of_pages=models.IntegerField()
     publisher=models.CharField(max_length=50)
     language=models.CharField(max_length=50)
+    book=models.OneToOneField(BookModel, on_delete=models.CASCADE,default=True)
 
     def __str__(self):
         return str(self.id)
