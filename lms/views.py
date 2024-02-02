@@ -118,8 +118,12 @@ class BookDetailsView(APIView):
                 return Response({'status':200,'Details':serializer.data})
             else:
                 return Response({'status':400,'message':serializer.errors}) 
+            
+        except BookDetailsModel.DoesNotExist:
+            return Response({'status': 404, 'message': 'Book details not found'}, status=status.HTTP_404_NOT_FOUND)
+        
         except Exception as e:
-            return Response({'status': 500, 'message': f'Internal Server Error: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)    
+            return Response({'status': 500, 'message': f'Internal Server Error: {str(e)}'}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)  
 
 #■ Borrow a Book , ■ Return a Book , ■ List All Borrowed Books...........................
 
