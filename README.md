@@ -36,6 +36,7 @@ DATABASES = {
         'PORT':'5432'
     }
 }
+```
 
 
 ## Models
