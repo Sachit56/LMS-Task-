@@ -13,12 +13,12 @@ class UserViewTests(APITestCase):
 
     def test_create_user(self):
         url = reverse('users')
-        data = {'name': 'John Doe', 'email': 'john@example.com', 'membership_date': '2022-01-01'}
+        data = {'name': 'Ramesh Pokhrel', 'email': 'ramesh@gmail.com', 'membership_date': '2022-01-04'}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_get_user_by_id(self):
-        user = UserModel.objects.create(name='Test User', email='test@example.com', membership_date='2022-01-01')
+        user = UserModel.objects.create(name='User', email='test@gmail.com', membership_date='2022-03-01')
         url = reverse('user_detail', args=[user.id])
         response = self.client.get(url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -31,12 +31,12 @@ class BookViewTests(APITestCase):
 
     def test_create_book(self):
         url = reverse('books')
-        data = {'title': 'Test Book', 'isbn': '1234567890', 'published_date': '2022-01-01', 'genre': 'Fiction'}
+        data = {'title': 'Test Book', 'isbn': '1234567890', 'published_date': '2022-03-01', 'genre': 'Fantasy'}
         response = self.client.post(url, data)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
 
     def test_update_book(self):
-        book = BookModel.objects.create(title='Test Book', isbn='1234567890', published_date='2022-01-01', genre='Fiction')
+        book = BookModel.objects.create(title='Test Book', isbn='1234567890', published_date='2022-01-12', genre='Drama')
         url = reverse('books')
         data = {'title': 'Updated Test Book'}
         response = self.client.patch(url, data)
@@ -47,8 +47,8 @@ class BookViewTests(APITestCase):
 class BorrowedBooksViewTests(APITestCase):
 
     def test_return_book(self):
-        user = UserModel.objects.create(name='Test User', email='test@example.com', membership_date='2022-01-01')
-        book = BookModel.objects.create(title='Test Book', isbn='1234567890', published_date='2022-01-01', genre='Fiction')
+        user = UserModel.objects.create(name='Test User', email='test@gmail.com', membership_date='2022-01-03')
+        book = BookModel.objects.create(title='Test Book', isbn='1234567890', published_date='2022-02-01', genre='Fantasy')
         borrowed_book = BorrowedBooksModel.objects.create(userid=user, bookid=book, borrowed_date='2022-02-01', return_date='2022-02-15')
 
         url = reverse('borrowed_book')
